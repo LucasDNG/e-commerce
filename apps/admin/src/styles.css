@@ -46,6 +46,8 @@ h1 { font-size: 32px; letter-spacing: -0.04em; margin: 0; }
 .good { color: var(--good); font-weight: 600; }
 .error { color: var(--danger); }
 .top { margin-bottom: 14px; }
+.top.bar { display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+.top.bar .btn { min-height: 40px; padding: 0 16px; background: var(--clay); }
 
 .stack { display: grid; gap: 12px; }
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -60,7 +62,7 @@ input, textarea, select, .search {
 }
 .search { margin-bottom: 12px; }
 
-.btn, .tabs a, .fab {
+.btn, .tabs a {
   text-decoration: none;
 }
 .btn {
@@ -80,7 +82,8 @@ input, textarea, select, .search {
 .btn.danger { background: var(--danger); }
 .btn:disabled { opacity: 0.4; }
 
-.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; }
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
 .chips button {
   border: 1px solid var(--line);
   background: white;
@@ -102,22 +105,6 @@ input, textarea, select, .search {
 .grow p { margin: 2px 0; font-size: 14px; }
 .actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .actions .btn { min-height: 38px; font-size: 14px; }
-
-.fab {
-  position: fixed;
-  z-index: 5;
-  right: max(16px, calc((100vw - 440px) / 2 + 16px));
-  bottom: calc(84px + env(safe-area-inset-bottom));
-  min-height: 52px;
-  padding: 0 18px;
-  border-radius: 999px;
-  background: var(--clay);
-  color: white;
-  display: inline-flex;
-  align-items: center;
-  font-weight: 700;
-  box-shadow: 0 10px 24px rgba(194, 78, 29, 0.28);
-}
 
 .tabs {
   position: fixed;

@@ -106,9 +106,14 @@ export function Catalog() {
 
   return (
     <>
-      <header className="top">
-        <p className="eyebrow">Catálogo</p>
-        <h1>Productos</h1>
+      <header className="top bar">
+        <div>
+          <p className="eyebrow">Catálogo</p>
+          <h1>Productos</h1>
+        </div>
+        <Link to="/producto/nuevo" className="btn">
+          Subir
+        </Link>
       </header>
       {error && <p className="error">{error}</p>}
       <input
@@ -186,9 +191,6 @@ export function Catalog() {
           </li>
         ))}
       </ul>
-      <Link to="/producto/nuevo" className="fab">
-        Subir
-      </Link>
     </>
   );
 }
