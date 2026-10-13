@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+apps/api/uploads/*
+!apps/api/uploads/.gitkeep
+apps/admin/dev-dist/
+apps/storefront/dev-dist/

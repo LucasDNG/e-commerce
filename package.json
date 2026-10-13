@@ -1,0 +1,22 @@
+{
+  "name": "vitrina",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,tienda,admin -c cyan,green,magenta \"npm run dev -w @vitrina/api\" \"npm run dev -w @vitrina/storefront\" \"npm run dev -w @vitrina/admin\"",
+    "setup": "npm run migrate && npm run seed",
+    "migrate": "npm run migrate -w @vitrina/api",
+    "seed": "npm run seed -w @vitrina/api",
+    "test": "npm run test -w @vitrina/api",
+    "typecheck": "npm run typecheck -ws --if-present",
+    "build": "npm run build -w @vitrina/storefront && npm run build -w @vitrina/admin && npm run typecheck -w @vitrina/api"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
