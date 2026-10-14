@@ -6,6 +6,7 @@ export type Admin = { id: string; email: string; name: string };
 export type Shop = {
   storeName: string;
   tagline: string;
+  location: string;
   currency: string;
   contactEmail: string;
   paymentMode: 'demo' | 'stripe';

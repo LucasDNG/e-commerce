@@ -1,11 +1,11 @@
 {
-  "name": "Vitrina admin",
-  "short_name": "Vitrina",
+  "name": "Caminito admin",
+  "short_name": "Caminito",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f7f4ef",
-  "theme_color": "#c24e1d",
+  "background_color": "#f6f1e6",
+  "theme_color": "#c8962a",
   "lang": "es",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },

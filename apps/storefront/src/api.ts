@@ -3,6 +3,7 @@ export const apiOrigin = import.meta.env.VITE_API_URL ?? '';
 export type Shop = {
   storeName: string;
   tagline: string;
+  location: string;
   currency: string;
   contactEmail: string;
   paymentMode: 'demo' | 'stripe';

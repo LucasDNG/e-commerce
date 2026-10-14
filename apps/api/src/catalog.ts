@@ -4,6 +4,7 @@ import { stripeReady, env } from './env.js';
 type ShopRow = {
   store_name: string;
   tagline: string;
+  location: string;
   currency: string;
   contact_email: string;
 };
@@ -73,12 +74,13 @@ export function imagePath(filename: string | null): string | null {
 }
 
 export async function getShop() {
-  const row = await one<ShopRow>('SELECT store_name, tagline, currency, contact_email FROM shop_settings WHERE id = 1');
+  const row = await one<ShopRow>('SELECT store_name, tagline, location, currency, contact_email FROM shop_settings WHERE id = 1');
   if (!row) throw new Error('Faltan los ajustes de la tienda');
   const ready = stripeReady();
   return {
     storeName: row.store_name,
     tagline: row.tagline,
+    location: row.location,
     currency: row.currency,
     contactEmail: row.contact_email,
     paymentMode: ready ? ('stripe' as const) : ('demo' as const),

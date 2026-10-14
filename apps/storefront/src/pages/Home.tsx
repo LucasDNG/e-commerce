@@ -31,8 +31,9 @@ export function Home() {
     <>
       <section className="hero">
         <div>
-          <p className="kicker">Tienda</p>
+          <p className="kicker">Artesanías</p>
           <h1>{catalog.shop.tagline || catalog.shop.storeName}</h1>
+          {catalog.shop.location && <p className="place">{catalog.shop.location}</p>}
         </div>
         <label className="search-row">
           <span className="sr">Buscar</span>

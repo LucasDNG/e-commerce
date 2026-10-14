@@ -5,9 +5,9 @@ import { FormEvent, useMemo, useState } from 'react';
 const appearance: Appearance = {
   theme: 'stripe',
   variables: {
-    colorPrimary: '#c24e1d',
-    colorText: '#1b1714',
-    colorBackground: '#fffcf7',
+    colorPrimary: '#a67c1a',
+    colorText: '#1c140c',
+    colorBackground: '#fbf6ee',
     borderRadius: '12px',
     fontFamily: 'Outfit, sans-serif',
   },

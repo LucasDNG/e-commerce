@@ -5,13 +5,17 @@ import { useShop } from '../shop';
 export function Header() {
   const { catalog } = useShop();
   const { count } = useCart();
-  const name = catalog?.shop.storeName ?? 'Vitrina';
+  const name = catalog?.shop.storeName ?? 'Caminito';
 
   return (
     <header className="site-header">
       <div className="header-row">
         <Link to="/" className="brand">
-          {name}
+          <img src="/seal.svg" alt="" width={48} height={48} />
+          <span>
+            {name}
+            <small>Artesanías</small>
+          </span>
         </Link>
         <Link to="/carrito" className="cart-link">
           Carrito
@@ -35,7 +39,10 @@ export function Footer() {
   const { catalog } = useShop();
   return (
     <footer className="site-footer">
-      <p>{catalog?.shop.storeName ?? 'Vitrina'}</p>
+      <div>
+        <p>{catalog?.shop.storeName ?? 'Caminito'}</p>
+        {catalog?.shop.location && <p>{catalog.shop.location}</p>}
+      </div>
       {catalog?.shop.contactEmail && <a href={`mailto:${catalog.shop.contactEmail}`}>{catalog.shop.contactEmail}</a>}
     </footer>
   );

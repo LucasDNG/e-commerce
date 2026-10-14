@@ -8,6 +8,7 @@ export function Settings() {
   const [me, setMe] = useState<Admin | null>(null);
   const [storeName, setStoreName] = useState('');
   const [tagline, setTagline] = useState('');
+  const [location, setLocation] = useState('');
   const [currency, setCurrency] = useState('ARS');
   const [contactEmail, setContactEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -20,6 +21,7 @@ export function Settings() {
         setMe(admin);
         setStoreName(settings.storeName);
         setTagline(settings.tagline);
+        setLocation(settings.location);
         setCurrency(settings.currency);
         setContactEmail(settings.contactEmail);
       })
@@ -33,7 +35,7 @@ export function Settings() {
     try {
       const updated = await api<Shop>('/api/admin/settings', {
         method: 'PATCH',
-        body: JSON.stringify({ storeName, tagline, currency, contactEmail }),
+        body: JSON.stringify({ storeName, tagline, location, currency, contactEmail }),
       });
       setShop(updated);
       setNotice('Guardado');
@@ -58,6 +60,10 @@ export function Settings() {
         <label>
           Frase de portada
           <input value={tagline} onChange={(event) => setTagline(event.target.value)} />
+        </label>
+        <label>
+          Lugar y envíos
+          <input value={location} onChange={(event) => setLocation(event.target.value)} />
         </label>
         <label>
           Moneda

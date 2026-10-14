@@ -29,8 +29,9 @@ export function Login() {
 
   return (
     <main className="login">
+      <img className="login-seal" src="/seal.svg" alt="" width={72} height={72} />
       <p className="eyebrow">Administración</p>
-      <h1>Vitrina</h1>
+      <h1>Caminito</h1>
       <p className="muted">Subí, ordená y bajá los productos desde el teléfono.</p>
       <form onSubmit={submit} className="stack">
         <label>

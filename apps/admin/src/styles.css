@@ -1,10 +1,10 @@
 :root {
   --ink: #1c1916;
   --muted: #746c62;
-  --paper: #f7f4ef;
-  --card: #fffdf9;
-  --line: #e6dfd4;
-  --clay: #c24e1d;
+  --paper: #f6f1e6;
+  --card: #fbf6ee;
+  --line: #e4d5be;
+  --clay: #a67c1a;
   --good: #2c4a3e;
   --danger: #8d2f2f;
   color: var(--ink);
@@ -16,7 +16,7 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  background: #d9d3c8;
+  background: #e4d3b4;
 }
 button, input, textarea, select { font: inherit; color: inherit; }
 img { display: block; max-width: 100%; }
@@ -33,7 +33,7 @@ a { color: inherit; }
 .screen { padding: 18px 16px calc(108px + env(safe-area-inset-bottom)); }
 .screen-form { padding: 0 0 env(safe-area-inset-bottom); }
 
-h1 { font-size: 32px; letter-spacing: -0.04em; margin: 0; }
+h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; font-size: 34px; letter-spacing: -0.02em; margin: 0; }
 .eyebrow {
   margin: 0 0 2px;
   text-transform: uppercase;
@@ -131,7 +131,8 @@ input, textarea, select, .search {
 .tabs a.active { color: var(--clay); font-weight: 700; }
 
 .login { min-height: 100dvh; padding: 48px 20px; display: grid; align-content: center; gap: 8px; }
-.login h1 { font-size: 56px; letter-spacing: -0.05em; }
+.login-seal { width: 72px; height: 72px; }
+.login h1 { font-size: 52px; letter-spacing: -0.03em; }
 .hint { color: var(--muted); font-size: 14px; }
 
 .form { padding: 0 16px 28px; }

@@ -87,9 +87,9 @@ export function mountAdmin(app: Express): void {
       if (!parsed.success) throw new HttpError(400, zodMessage(parsed.error));
       await pool.query(
         `UPDATE shop_settings
-         SET store_name = $1, tagline = $2, currency = $3, contact_email = $4, updated_at = now()
+         SET store_name = $1, tagline = $2, location = $3, currency = $4, contact_email = $5, updated_at = now()
          WHERE id = 1`,
-        [parsed.data.storeName, parsed.data.tagline, parsed.data.currency, parsed.data.contactEmail],
+        [parsed.data.storeName, parsed.data.tagline, parsed.data.location, parsed.data.currency, parsed.data.contactEmail],
       );
       res.json(await getShop());
     }),

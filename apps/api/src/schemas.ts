@@ -52,6 +52,7 @@ export const sectionPatchSchema = z.object({
 export const settingsSchema = z.object({
   storeName: z.string().trim().min(2, 'El nombre de la tienda es muy corto').max(60),
   tagline: z.string().trim().max(160),
+  location: z.string().trim().max(180),
   currency: z.enum(CURRENCIES),
   contactEmail: z
     .string()
