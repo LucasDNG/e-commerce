@@ -30,11 +30,11 @@ export function Home() {
   return (
     <>
       <section className="hero">
-        <p className="kicker">Tienda</p>
-        <h1>{catalog.shop.tagline || catalog.shop.storeName}</h1>
-      </section>
-      <div className="search-row">
-        <label>
+        <div>
+          <p className="kicker">Tienda</p>
+          <h1>{catalog.shop.tagline || catalog.shop.storeName}</h1>
+        </div>
+        <label className="search-row">
           <span className="sr">Buscar</span>
           <input
             value={search}
@@ -43,7 +43,7 @@ export function Home() {
             type="search"
           />
         </label>
-      </div>
+      </section>
       <div id="catalogo">
         {sections.length === 0 && <p className="status-copy">No hay productos para esa búsqueda.</p>}
         {sections.map((section, index) => (

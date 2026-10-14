@@ -73,7 +73,7 @@ export function ProductPage() {
         )}
         <h1>{product.name}</h1>
         <Price cents={product.priceCents} compareAtCents={product.compareAtCents} currency={currency} />
-        <p className="summary">{product.summary}</p>
+        <p className="lead">{product.summary}</p>
         <p className="description">{product.description}</p>
         {product.stock > 0 && product.stock <= 5 && <p className="stock-note">Quedan {product.stock}</p>}
         <div className="qty">
