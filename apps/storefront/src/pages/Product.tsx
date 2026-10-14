@@ -54,7 +54,9 @@ export function ProductPage() {
   return (
     <article className="product-page">
       <div className="gallery">
-        {current?.url ? <img src={media(current.url) ?? ''} alt={current.alt} /> : <div className="ph tall" />}
+        <span className="mount tall">
+          {current?.url ? <img src={media(current.url) ?? ''} alt={current.alt} /> : <div className="ph tall" />}
+        </span>
         {images.length > 1 && (
           <div className="thumbs">
             {images.map((image, index) => (

@@ -29,10 +29,15 @@ export function Home() {
 
   return (
     <>
-      <section className="hero">
-        <div>
-          <p className="kicker">Artesanías</p>
+      <section className="poster">
+        <img className="poster-seal" src="/seal.svg" alt="" width={108} height={108} />
+        <div className="poster-copy">
+          <p className="kicker">Artesanías de Verónica</p>
           <h1>{catalog.shop.tagline || catalog.shop.storeName}</h1>
+          <svg className="trail" viewBox="0 0 280 22" aria-hidden="true">
+            <path d="M2 14c28-10 48 8 78-2s52-8 78 2 48 6 74-4 28-4 46 1" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+            <circle cx="274" cy="11" r="2.4" fill="currentColor" />
+          </svg>
           {catalog.shop.location && <p className="place">{catalog.shop.location}</p>}
         </div>
         <label className="search-row">
@@ -51,7 +56,7 @@ export function Home() {
           <section key={section.id} id={section.slug} className="catalog-section">
             <div className="section-head">
               <h2>
-                <span>{String(index + 1).padStart(2, '0')}</span>
+                <span className="mark">{String(index + 1).padStart(2, '0')}</span>
                 {section.name}
               </h2>
               {section.description && <p>{section.description}</p>}
@@ -59,11 +64,13 @@ export function Home() {
             <div className="product-grid">
               {section.products.map((product) => (
                 <Link key={product.id} to={`/producto/${product.slug}`} className="product-card">
-                  {product.imageUrl ? (
-                    <img src={media(product.imageUrl) ?? ''} alt="" />
-                  ) : (
-                    <div className="ph" />
-                  )}
+                  <span className="mount">
+                    {product.imageUrl ? (
+                      <img src={media(product.imageUrl) ?? ''} alt="" />
+                    ) : (
+                      <div className="ph" />
+                    )}
+                  </span>
                   <div>
                     <h3>{product.name}</h3>
                     <p>{product.summary}</p>
