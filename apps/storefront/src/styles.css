@@ -47,7 +47,7 @@ a { color: inherit; }
 .skip:focus { top: 12px; }
 
 .site { min-height: 100dvh; }
-.site-header, main, .site-footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+main, .site-footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
 main { padding-bottom: 40px; }
 
 .site-header {
@@ -55,9 +55,10 @@ main { padding-bottom: 40px; }
   top: 0;
   z-index: 4;
   padding-top: 8px;
-  background: color-mix(in srgb, var(--paper) 92%, transparent);
-  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--paper) 88%, #e7d3a4);
+  border-bottom: 1px solid var(--line);
 }
+.header-row, .section-nav { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
 .header-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .brand {
   display: flex;
@@ -103,7 +104,6 @@ main { padding-bottom: 40px; }
   gap: 14px;
   overflow-x: auto;
   padding: 6px 0 8px;
-  border-bottom: 1px solid var(--line);
   scrollbar-width: none;
 }
 .section-nav::-webkit-scrollbar { display: none; }
@@ -141,7 +141,7 @@ h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600
   border-radius: 10px;
   padding: 10px 12px;
 }
-.catalog-section { scroll-margin-top: 72px; padding-top: 16px; }
+.catalog-section { scroll-margin-top: 96px; padding-top: 16px; }
 .section-head {
   display: flex;
   justify-content: space-between;
