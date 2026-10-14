@@ -6,9 +6,10 @@ export default defineConfig({
   plugins: [react()],
   envDir: resolve(__dirname, '../..'),
   server: {
-    host: true,
+    host: '0.0.0.0',
     port: 5174,
     strictPort: true,
+    allowedHosts: true,
     proxy: {
       '/api': 'http://127.0.0.1:4000',
       '/uploads': 'http://127.0.0.1:4000',
