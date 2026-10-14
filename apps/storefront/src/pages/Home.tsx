@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { media } from '../api';
+import { Beads } from '../components/Marks';
 import { Price } from '../components/Price';
 import { useShop } from '../shop';
 
@@ -30,25 +31,26 @@ export function Home() {
   return (
     <>
       <section className="poster">
-        <img className="poster-seal" src="/seal.svg" alt="" width={108} height={108} />
-        <div className="poster-copy">
-          <p className="kicker">Artesanías de Verónica</p>
-          <h1>{catalog.shop.tagline || catalog.shop.storeName}</h1>
-          <svg className="trail" viewBox="0 0 280 22" aria-hidden="true">
-            <path d="M2 14c28-10 48 8 78-2s52-8 78 2 48 6 74-4 28-4 46 1" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-            <circle cx="274" cy="11" r="2.4" fill="currentColor" />
-          </svg>
-          {catalog.shop.location && <p className="place">{catalog.shop.location}</p>}
+        <div className="poster-frame">
+          <img className="poster-seal" src="/seal.svg" alt="" width={148} height={148} />
+          <div className="poster-copy">
+            <p className="kicker">Verónica, Buenos Aires</p>
+            <h1 className="wordmark">{catalog.shop.storeName}</h1>
+            <p className="wordmark-sub">Artesanías</p>
+            <p className="tagline">{catalog.shop.tagline}</p>
+            {catalog.shop.location && <p className="place">{catalog.shop.location}</p>}
+          </div>
+          <label className="search-row">
+            <span className="sr">Buscar</span>
+            <input
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Buscar una pieza"
+              type="search"
+            />
+          </label>
+          <Beads />
         </div>
-        <label className="search-row">
-          <span className="sr">Buscar</span>
-          <input
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            placeholder="Buscar en el catálogo"
-            type="search"
-          />
-        </label>
       </section>
       <div id="catalogo">
         {sections.length === 0 && <p className="status-copy">No hay productos para esa búsqueda.</p>}
@@ -70,11 +72,11 @@ export function Home() {
                     ) : (
                       <div className="ph" />
                     )}
+                    <Price cents={product.priceCents} compareAtCents={product.compareAtCents} currency={currency} />
                   </span>
-                  <div>
+                  <div className="card-copy">
                     <h3>{product.name}</h3>
                     <p>{product.summary}</p>
-                    <Price cents={product.priceCents} compareAtCents={product.compareAtCents} currency={currency} />
                   </div>
                 </Link>
               ))}

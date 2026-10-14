@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../cart';
+import { Beads } from './Marks';
 import { useShop } from '../shop';
 
 const BAND = ['Piedras naturales', 'Cosas lindas', 'Envíos a todo el país', 'Verónica, Bs. As.', 'Calle 30'];
@@ -55,8 +56,9 @@ export function Footer() {
   const { catalog } = useShop();
   return (
     <footer className="site-footer">
+      <Beads className="footer-beads" />
       <div className="footer-inner">
-        <img src="/seal.svg" alt="" width={76} height={76} />
+        <img src="/seal.svg" alt="" width={88} height={88} />
         <div>
           <p>{catalog?.shop.storeName ?? 'Caminito'}</p>
           <p className="footer-kicker">Artesanías</p>
