@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { media } from '../api';
-import { Beads } from '../components/Marks';
 import { Price } from '../components/Price';
 import { useShop } from '../shop';
 
@@ -30,27 +29,21 @@ export function Home() {
 
   return (
     <>
-      <section className="poster">
-        <div className="poster-frame">
-          <img className="poster-seal" src="/seal.svg" alt="" width={148} height={148} />
-          <div className="poster-copy">
-            <p className="kicker">Verónica, Buenos Aires</p>
-            <h1 className="wordmark">{catalog.shop.storeName}</h1>
-            <p className="wordmark-sub">Artesanías</p>
-            <p className="tagline">{catalog.shop.tagline}</p>
-            {catalog.shop.location && <p className="place">{catalog.shop.location}</p>}
-          </div>
-          <label className="search-row">
-            <span className="sr">Buscar</span>
-            <input
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder="Buscar una pieza"
-              type="search"
-            />
-          </label>
-          <Beads />
+      <section className="intro">
+        <div className="intro-copy">
+          <p className="kicker">Artesanías · Verónica</p>
+          <h1>{catalog.shop.tagline || catalog.shop.storeName}</h1>
+          {catalog.shop.location && <p className="place">{catalog.shop.location}</p>}
         </div>
+        <label className="search-row">
+          <span className="sr">Buscar</span>
+          <input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="Buscar una pieza"
+            type="search"
+          />
+        </label>
       </section>
       <div id="catalogo">
         {sections.length === 0 && <p className="status-copy">No hay productos para esa búsqueda.</p>}
@@ -67,15 +60,11 @@ export function Home() {
               {section.products.map((product) => (
                 <Link key={product.id} to={`/producto/${product.slug}`} className="product-card">
                   <span className="mount">
-                    {product.imageUrl ? (
-                      <img src={media(product.imageUrl) ?? ''} alt="" />
-                    ) : (
-                      <div className="ph" />
-                    )}
-                    <Price cents={product.priceCents} compareAtCents={product.compareAtCents} currency={currency} />
+                    {product.imageUrl ? <img src={media(product.imageUrl) ?? ''} alt="" /> : <div className="ph" />}
                   </span>
                   <div className="card-copy">
                     <h3>{product.name}</h3>
+                    <Price cents={product.priceCents} compareAtCents={product.compareAtCents} currency={currency} />
                     <p>{product.summary}</p>
                   </div>
                 </Link>

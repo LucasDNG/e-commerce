@@ -5,11 +5,11 @@ import { FormEvent, useMemo, useState } from 'react';
 const appearance: Appearance = {
   theme: 'stripe',
   variables: {
-    colorPrimary: '#a67c1a',
-    colorText: '#1c140c',
-    colorBackground: '#fbf6ee',
-    borderRadius: '12px',
-    fontFamily: 'Outfit, sans-serif',
+    colorPrimary: '#161513',
+    colorText: '#161513',
+    colorBackground: '#fbfaf7',
+    borderRadius: '0px',
+    fontFamily: '"Instrument Sans", sans-serif',
   },
 };
 
