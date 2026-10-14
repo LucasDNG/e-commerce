@@ -11,9 +11,9 @@ export function Price({
 }) {
   const onSale = compareAtCents !== null && compareAtCents > cents;
   return (
-    <p className="price">
-      {onSale && <s>{formatMoney(compareAtCents, currency)}</s>}
-      <strong>{formatMoney(cents, currency)}</strong>
+    <p className="mt-1 flex items-baseline gap-2 text-sm text-ink">
+      {onSale && <s className="text-muted">{formatMoney(compareAtCents, currency)}</s>}
+      <strong className="font-medium">{formatMoney(cents, currency)}</strong>
     </p>
   );
 }

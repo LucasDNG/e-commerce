@@ -1,14 +1,15 @@
 import { Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { loadStripe, type Appearance } from '@stripe/stripe-js';
 import { FormEvent, useMemo, useState } from 'react';
+import { btn } from '../ui';
 
 const appearance: Appearance = {
   theme: 'stripe',
   variables: {
-    colorPrimary: '#161513',
-    colorText: '#161513',
-    colorBackground: '#fbfaf7',
-    borderRadius: '0px',
+    colorPrimary: '#1c1917',
+    colorText: '#1c1917',
+    colorBackground: '#fffcf9',
+    borderRadius: '16px',
     fontFamily: '"Instrument Sans", sans-serif',
   },
 };
@@ -49,10 +50,10 @@ function PayForm({ returnUrl, onPaid }: { returnUrl: string; onPaid: (paymentInt
   }
 
   return (
-    <form onSubmit={submit} className="pay-form">
+    <form onSubmit={submit} className="mt-6 grid gap-4">
       <PaymentElement />
-      {error && <p className="form-error">{error}</p>}
-      <button className="btn" type="submit" disabled={!stripe || busy}>
+      {error && <p className="text-sm text-danger">{error}</p>}
+      <button className={btn} type="submit" disabled={!stripe || busy}>
         {busy ? 'Cobrando…' : 'Pagar'}
       </button>
     </form>

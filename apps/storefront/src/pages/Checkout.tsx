@@ -4,6 +4,7 @@ import { api, type CheckoutResponse, type Order } from '../api';
 import { useCart } from '../cart';
 import { formatMoney } from '../format';
 import { useShop } from '../shop';
+import { btn, field, label } from '../ui';
 
 const StripePayment = lazy(() => import('../components/StripePayment'));
 
@@ -90,9 +91,9 @@ export function CheckoutPage() {
 
   if (!done && items.length === 0 && !created) {
     return (
-      <div className="narrow">
-        <h1>No hay nada para pagar</h1>
-        <Link to="/" className="btn">
+      <div className="mx-auto max-w-xl px-6 py-24">
+        <h1 className="font-serif text-5xl tracking-tight">No hay nada para pagar</h1>
+        <Link to="/" className={`${btn} mt-8`}>
           Volver a la tienda
         </Link>
       </div>
@@ -103,69 +104,70 @@ export function CheckoutPage() {
   const stripe = created?.payment.provider === 'stripe' ? created.payment : null;
 
   return (
-    <div className="split">
-      <form onSubmit={createOrder} className="stack">
-        <h1>Pago</h1>
-        <p className="lede">Los datos y el cobro quedan en esta página.</p>
-        <label>
+    <div className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-14 md:px-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:py-20">
+      <form onSubmit={createOrder} className="grid gap-5">
+        <h1 className="font-serif text-5xl tracking-tight md:text-6xl">Pago</h1>
+        <p className="text-muted">Los datos y el cobro quedan en esta página.</p>
+        <label className={label}>
           Nombre y apellido
-          <input value={form.customerName} onChange={(event) => update('customerName', event.target.value)} required />
+          <input className={field} value={form.customerName} onChange={(event) => update('customerName', event.target.value)} required />
         </label>
-        <label>
+        <label className={label}>
           Email
-          <input type="email" value={form.email} onChange={(event) => update('email', event.target.value)} required />
+          <input className={field} type="email" value={form.email} onChange={(event) => update('email', event.target.value)} required />
         </label>
-        <label>
+        <label className={label}>
           Teléfono
-          <input value={form.phone} onChange={(event) => update('phone', event.target.value)} />
+          <input className={field} value={form.phone} onChange={(event) => update('phone', event.target.value)} />
         </label>
-        <label>
+        <label className={label}>
           Dirección
-          <input value={form.addressLine} onChange={(event) => update('addressLine', event.target.value)} required />
+          <input className={field} value={form.addressLine} onChange={(event) => update('addressLine', event.target.value)} required />
         </label>
-        <div className="pair">
-          <label>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <label className={label}>
             Ciudad
-            <input value={form.city} onChange={(event) => update('city', event.target.value)} required />
+            <input className={field} value={form.city} onChange={(event) => update('city', event.target.value)} required />
           </label>
-          <label>
+          <label className={label}>
             Código postal
-            <input value={form.postalCode} onChange={(event) => update('postalCode', event.target.value)} />
+            <input className={field} value={form.postalCode} onChange={(event) => update('postalCode', event.target.value)} />
           </label>
         </div>
-        <label>
+        <label className={label}>
           Notas
-          <textarea value={form.notes} onChange={(event) => update('notes', event.target.value)} rows={3} />
+          <textarea className={field} value={form.notes} onChange={(event) => update('notes', event.target.value)} rows={3} />
         </label>
         {!created && (
-          <button className="btn" type="submit" disabled={busy}>
+          <button className={`${btn} mt-2 w-fit`} type="submit" disabled={busy}>
             {busy ? 'Preparando el pago…' : 'Continuar al pago'}
           </button>
         )}
       </form>
 
-      <aside className="summary pay-panel">
-        <p>Total a pagar</p>
-        <strong>{formatMoney(created?.order.totalCents ?? totalCents, currency)}</strong>
-        {created && created.order.totalCents !== totalCents && <p className="fine">El total se actualizó con los precios vigentes.</p>}
+      <aside className="rounded-3xl bg-card p-8 shadow-sm lg:sticky lg:top-28">
+        <p className="text-sm text-muted">Total a pagar</p>
+        <strong className="mt-2 block font-serif text-5xl font-normal tracking-tight">{formatMoney(created?.order.totalCents ?? totalCents, currency)}</strong>
+        {created && created.order.totalCents !== totalCents && <p className="mt-3 text-sm text-muted">El total se actualizó con los precios vigentes.</p>}
         {!created && catalog?.shop.paymentMode === 'demo' && (
-          <p className="fine">Al confirmar se abre el formulario de la tarjeta, sin salir de la tienda.</p>
+          <p className="mt-4 text-sm leading-relaxed text-muted">Al confirmar se abre el formulario de la tarjeta, sin salir de la tienda.</p>
         )}
         {created && demo && (
           <form
-            className="pay-form"
+            className="mt-8 grid gap-5"
             onSubmit={(event) => {
               event.preventDefault();
               void finish(`/api/checkout/${created.order.token}/confirm`, { cardNumber, exp, cvc });
             }}
           >
-            <p className="demo-note">
+            <p className="rounded-2xl bg-paper px-4 py-4 text-sm leading-relaxed text-muted">
               Modo demostración: no se cobra dinero real. Para aprobar el pago usá 4242 4242 4242 4242, un vencimiento futuro y
               cualquier CVC de 3 dígitos.
             </p>
-            <label>
+            <label className={label}>
               Número de tarjeta
               <input
+                className={field}
                 inputMode="numeric"
                 autoComplete="cc-number"
                 placeholder="4242 4242 4242 4242"
@@ -181,10 +183,11 @@ export function CheckoutPage() {
                 required
               />
             </label>
-            <div className="pair">
-              <label>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className={label}>
                 Vencimiento
                 <input
+                  className={field}
                   inputMode="numeric"
                   autoComplete="cc-exp"
                   placeholder="MM/AA"
@@ -196,9 +199,10 @@ export function CheckoutPage() {
                   required
                 />
               </label>
-              <label>
+              <label className={label}>
                 CVC
                 <input
+                  className={field}
                   inputMode="numeric"
                   autoComplete="cc-csc"
                   placeholder="123"
@@ -208,13 +212,13 @@ export function CheckoutPage() {
                 />
               </label>
             </div>
-            <button className="btn" type="submit" disabled={busy}>
+            <button className={`${btn} w-full`} type="submit" disabled={busy}>
               {busy ? 'Cobrando…' : `Pagar ${formatMoney(created.order.totalCents, currency)}`}
             </button>
           </form>
         )}
         {created && stripe && (
-          <Suspense fallback={<p className="fine">Cargando el pago…</p>}>
+          <Suspense fallback={<p className="mt-6 text-sm text-muted">Cargando el pago…</p>}>
             <StripePayment
               publishableKey={stripe.publishableKey}
               clientSecret={stripe.clientSecret}
@@ -223,7 +227,7 @@ export function CheckoutPage() {
             />
           </Suspense>
         )}
-        {error && <p className="form-error">{error}</p>}
+        {error && <p className="mt-4 text-sm text-danger">{error}</p>}
       </aside>
     </div>
   );

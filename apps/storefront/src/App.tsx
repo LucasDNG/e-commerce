@@ -10,9 +10,11 @@ import { ShopProvider } from './shop';
 
 function NotFound() {
   return (
-    <div className="narrow">
-      <h1>Esa página no está</h1>
-      <a href="/">Volver a la tienda</a>
+    <div className="mx-auto max-w-xl px-6 py-24">
+      <h1 className="font-serif text-5xl tracking-tight">Esa página no está</h1>
+      <a className="mt-6 inline-block text-sm underline underline-offset-4" href="/">
+        Volver a la tienda
+      </a>
     </div>
   );
 }
@@ -22,8 +24,8 @@ export function App() {
     <BrowserRouter>
       <ShopProvider>
         <CartProvider>
-          <div className="site">
-            <a className="skip" href="#contenido">
+          <div className="min-h-dvh bg-paper font-sans text-ink antialiased">
+            <a className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-card" href="#contenido">
               Saltar al contenido
             </a>
             <Header />
