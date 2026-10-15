@@ -28,8 +28,8 @@ export function Home() {
   if (!catalog) return null;
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-6 md:px-10">
-      <section className="grid items-end gap-10 pb-4 pt-16 md:pt-24 lg:grid-cols-[1fr_280px] lg:gap-16 lg:pt-28">
+    <div className="mx-auto w-full max-w-6xl px-3 py-4 md:px-6 md:py-8">
+      <section className="grid items-end gap-10 rounded-[2rem] bg-paper/94 px-6 py-12 shadow-sm backdrop-blur-md md:px-10 md:py-16 lg:grid-cols-[1fr_280px] lg:gap-16">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Artesanías · Verónica</p>
           <h1 className="mt-6 max-w-[12ch] font-serif text-5xl leading-[0.95] tracking-tight text-ink md:text-7xl">
@@ -50,9 +50,9 @@ export function Home() {
       </section>
 
       <div id="catalogo">
-        {sections.length === 0 && <p className="py-20 text-muted">No hay productos para esa búsqueda.</p>}
+        {sections.length === 0 && <p className="mt-4 rounded-[2rem] bg-paper/94 px-6 py-16 text-muted backdrop-blur-md">No hay productos para esa búsqueda.</p>}
         {sections.map((section, index) => (
-          <section key={section.id} id={section.slug} className="scroll-mt-28 py-14 md:py-20">
+          <section key={section.id} id={section.slug} className="mt-4 scroll-mt-28 rounded-[2rem] bg-paper/94 px-5 py-12 backdrop-blur-md md:mt-6 md:px-10 md:py-16">
             <div className="mb-10 flex items-end justify-between gap-8 md:mb-14">
               <div>
                 <p className="text-xs font-medium tracking-[0.2em] text-muted">{String(index + 1).padStart(2, '0')}</p>

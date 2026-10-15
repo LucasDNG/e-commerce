@@ -33,7 +33,7 @@ export function OrderPage() {
   if (!order) return <p className="px-6 py-24 text-muted">Buscando el pedido…</p>;
 
   return (
-    <div className="mx-auto max-w-xl px-6 py-16 md:py-24">
+    <div className="mx-auto my-4 max-w-xl rounded-[2rem] bg-paper/94 px-6 py-14 backdrop-blur-md md:my-8 md:py-20">
       <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Pedido {order.number}</p>
       <h1 className="mt-4 font-serif text-5xl leading-[0.95] tracking-tight">{labels[order.status]}</h1>
       <p className="mt-6 leading-relaxed text-muted">

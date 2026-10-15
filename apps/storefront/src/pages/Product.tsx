@@ -55,7 +55,7 @@ export function ProductPage() {
   const out = product.stock <= 0;
 
   return (
-    <article className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-14 md:px-10 lg:grid-cols-2 lg:items-start lg:gap-16 lg:py-20">
+    <article className="mx-auto my-4 grid w-full max-w-6xl gap-12 rounded-[2rem] bg-paper/94 px-6 py-12 backdrop-blur-md md:my-8 md:px-10 md:py-16 lg:grid-cols-2 lg:items-start lg:gap-16">
       <div>
         <span className="block overflow-hidden rounded-3xl bg-stage">
           {current?.url ? (

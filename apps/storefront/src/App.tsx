@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CartProvider } from './cart';
 import { Footer, Header } from './components/Header';
+import { StoneField } from './components/Stones';
 import { CartPage } from './pages/Cart';
 import { CheckoutPage } from './pages/Checkout';
 import { Home } from './pages/Home';
@@ -24,7 +25,8 @@ export function App() {
     <BrowserRouter>
       <ShopProvider>
         <CartProvider>
-          <div className="min-h-dvh bg-paper font-sans text-ink antialiased">
+          <div className="relative min-h-dvh bg-transparent font-sans text-ink antialiased">
+            <StoneField />
             <a className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-card" href="#contenido">
               Saltar al contenido
             </a>

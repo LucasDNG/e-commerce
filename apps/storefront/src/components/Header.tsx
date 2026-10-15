@@ -8,7 +8,7 @@ export function Header() {
   const name = catalog?.shop.storeName ?? 'Caminito';
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/88 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4 md:px-10">
         <Link to="/" className="flex items-center gap-3 text-ink no-underline">
           <img src="/seal.svg" alt="" width={44} height={44} className="h-11 w-11" />
@@ -47,7 +47,7 @@ export function Header() {
 export function Footer() {
   const { catalog } = useShop();
   return (
-    <footer className="mt-24 bg-ink text-stone-300">
+    <footer className="relative mt-10 bg-ink text-stone-300">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-16 md:flex-row md:items-center md:px-10 md:py-20">
         <img src="/seal.svg" alt="" width={56} height={56} className="h-14 w-14" />
         <div>

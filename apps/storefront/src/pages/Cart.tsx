@@ -22,7 +22,7 @@ export function CartPage() {
   }
 
   return (
-    <div className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-14 md:px-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start lg:py-20">
+    <div className="mx-auto my-4 grid w-full max-w-6xl gap-12 rounded-[2rem] bg-paper/94 px-6 py-12 backdrop-blur-md md:my-8 md:px-10 md:py-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
       <div>
         <h1 className="font-serif text-5xl tracking-tight md:text-6xl">Carrito</h1>
         <ul className="mt-10 grid gap-8">
