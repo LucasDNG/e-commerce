@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api, type Order } from '../api';
 import { formatMoney } from '../format';
-import { btn } from '../ui';
+import { btn, glass } from '../ui';
 
 const labels: Record<Order['status'], string> = {
   paid: 'Pago confirmado',
@@ -29,11 +29,11 @@ export function OrderPage() {
     };
   }, [token]);
 
-  if (error) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-danger ring-1 ring-gold/30 md:mx-6">{error}</p>;
-  if (!order) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-muted ring-1 ring-gold/30 md:mx-6">Buscando el pedido…</p>;
+  if (error) return <p className={`${glass} mx-3 my-4 rounded-[2rem] px-6 py-24 text-danger md:mx-6`}>{error}</p>;
+  if (!order) return <p className={`${glass} mx-3 my-4 rounded-[2rem] px-6 py-24 text-muted md:mx-6`}>Buscando el pedido…</p>;
 
   return (
-    <div className="mx-auto my-4 max-w-xl rounded-[2rem] bg-paper/94 px-6 py-14 backdrop-blur-md md:my-8 md:py-20">
+    <div className={`${glass} mx-auto my-4 max-w-xl rounded-[2rem] px-6 py-14 md:my-8 md:py-20`}>
       <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent">Pedido {order.number}</p>
       <h1 className="mt-4 font-serif text-5xl leading-[0.95] tracking-tight">{labels[order.status]}</h1>
       <p className="mt-6 leading-relaxed text-muted">

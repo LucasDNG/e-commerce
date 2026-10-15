@@ -4,7 +4,7 @@ import { api, type CheckoutResponse, type Order } from '../api';
 import { useCart } from '../cart';
 import { formatMoney } from '../format';
 import { useShop } from '../shop';
-import { btn, field, label } from '../ui';
+import { btn, field, glass, label } from '../ui';
 
 const StripePayment = lazy(() => import('../components/StripePayment'));
 
@@ -91,7 +91,7 @@ export function CheckoutPage() {
 
   if (!done && items.length === 0 && !created) {
     return (
-      <div className="mx-3 my-4 max-w-xl rounded-[2rem] bg-paper px-6 py-16 ring-1 ring-gold/30 md:mx-auto md:my-8">
+      <div className={`${glass} mx-3 my-4 max-w-xl rounded-[2rem] px-6 py-16 md:mx-auto md:my-8`}>
         <h1 className="font-serif text-5xl tracking-tight">No hay nada para pagar</h1>
         <Link to="/" className={`${btn} mt-8`}>
           Volver a la tienda
@@ -104,7 +104,7 @@ export function CheckoutPage() {
   const stripe = created?.payment.provider === 'stripe' ? created.payment : null;
 
   return (
-    <div className="mx-auto my-4 grid w-full max-w-6xl gap-12 rounded-[2rem] bg-paper/94 px-6 py-12 backdrop-blur-md md:my-8 md:px-10 md:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+    <div className={`${glass} mx-auto my-4 grid w-full max-w-6xl gap-12 rounded-[2rem] px-6 py-12 md:my-8 md:px-10 md:py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-start`}>
       <form onSubmit={createOrder} className="grid gap-5">
         <h1 className="font-serif text-5xl tracking-tight md:text-6xl">Pago</h1>
         <p className="text-muted">Los datos y el cobro quedan en esta página.</p>
@@ -145,7 +145,7 @@ export function CheckoutPage() {
         )}
       </form>
 
-      <aside className="rounded-3xl bg-card p-8 shadow-sm lg:sticky lg:top-28">
+      <aside className={`${glass} rounded-3xl bg-paper/55 p-8 lg:sticky lg:top-28`}>
         <p className="text-sm text-muted">Total a pagar</p>
         <strong className="mt-2 block font-serif text-5xl font-normal tracking-tight">{formatMoney(created?.order.totalCents ?? totalCents, currency)}</strong>
         {created && created.order.totalCents !== totalCents && <p className="mt-3 text-sm text-muted">El total se actualizó con los precios vigentes.</p>}

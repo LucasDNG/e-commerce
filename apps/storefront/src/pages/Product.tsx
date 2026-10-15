@@ -4,7 +4,7 @@ import { api, media, type Product } from '../api';
 import { useCart } from '../cart';
 import { Price } from '../components/Price';
 import { useShop } from '../shop';
-import { btn } from '../ui';
+import { btn, glass } from '../ui';
 
 export function ProductPage() {
   const { slug = '' } = useParams();
@@ -40,7 +40,7 @@ export function ProductPage() {
 
   if (error) {
     return (
-      <div className="mx-3 my-4 max-w-xl rounded-[2rem] bg-paper px-6 py-16 ring-1 ring-gold/30 md:mx-auto md:my-8">
+      <div className={`${glass} mx-3 my-4 max-w-xl rounded-[2rem] px-6 py-16 md:mx-auto md:my-8`}>
         <p className="text-danger">{error}</p>
         <Link to="/" className={`${btn} mt-8`}>
           Volver a la tienda
@@ -48,14 +48,14 @@ export function ProductPage() {
       </div>
     );
   }
-  if (!product) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-muted ring-1 ring-gold/30 md:mx-6">Cargando producto…</p>;
+  if (!product) return <p className={`${glass} mx-3 my-4 rounded-[2rem] px-6 py-24 text-muted md:mx-6`}>Cargando producto…</p>;
 
   const images = product.images.length > 0 ? product.images : [{ id: 'empty', url: product.imageUrl, alt: product.name }];
   const current = images[Math.min(photo, images.length - 1)];
   const out = product.stock <= 0;
 
   return (
-    <article className="mx-auto my-4 grid w-full max-w-6xl gap-12 rounded-[2rem] bg-paper/94 px-6 py-12 backdrop-blur-md md:my-8 md:px-10 md:py-16 lg:grid-cols-2 lg:items-start lg:gap-16">
+    <article className={`${glass} mx-auto my-4 grid w-full max-w-6xl gap-12 rounded-[2rem] px-6 py-12 md:my-8 md:px-10 md:py-16 lg:grid-cols-2 lg:items-start lg:gap-16`}>
       <div>
         <span className="block overflow-hidden rounded-3xl bg-stage">
           {current?.url ? (

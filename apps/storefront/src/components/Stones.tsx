@@ -1,23 +1,34 @@
-const tiles = [
-  { src: '/piedras/rodocrosita.jpg', focus: 'object-center' },
-  { src: '/piedras/ojo-de-tigre.jpg', focus: 'object-center' },
-  { src: '/piedras/jade.jpg', focus: 'object-center' },
-  { src: '/piedras/obsidiana.jpg', focus: 'object-[center_30%]' },
-  { src: '/piedras/aros.jpg', focus: 'object-center' },
-  { src: '/piedras/ojo-de-tigre.jpg', focus: 'object-[center_70%]' },
+const pieces = [
+  '/piedras/rodocrosita.jpg',
+  '/piedras/ojo-de-tigre.jpg',
+  '/piedras/jade.jpg',
+  '/piedras/obsidiana.jpg',
+  '/piedras/aros.jpg',
+  '/piedras/jade.jpg',
+  '/piedras/aros.jpg',
+  '/piedras/rodocrosita.jpg',
+  '/piedras/ojo-de-tigre.jpg',
+  '/piedras/obsidiana.jpg',
+  '/piedras/aros.jpg',
+  '/piedras/ojo-de-tigre.jpg',
+  '/piedras/obsidiana.jpg',
+  '/piedras/rodocrosita.jpg',
+  '/piedras/jade.jpg',
+  '/piedras/aros.jpg',
+  '/piedras/jade.jpg',
+  '/piedras/obsidiana.jpg',
+  '/piedras/ojo-de-tigre.jpg',
+  '/piedras/rodocrosita.jpg',
 ];
 
 export function StoneField() {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <div className="grid h-full w-full grid-cols-2 grid-rows-3 gap-1 bg-[#2c241c] p-1 md:grid-cols-3 md:grid-rows-2">
-        {tiles.map((tile) => (
-          <span key={`${tile.src}-${tile.focus}`} className="block h-full overflow-hidden">
-            <img src={tile.src} alt="" className={`h-full w-full scale-125 object-cover ${tile.focus}`} />
-          </span>
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#2a2118]" aria-hidden="true">
+      <div className="grid grid-cols-2 gap-2 p-2 sm:grid-cols-3 lg:grid-cols-4">
+        {pieces.map((src, index) => (
+          <img key={`${src}-${index}`} src={src} alt="" className="aspect-square w-full rounded-2xl object-contain shadow-[0_8px_24px_rgba(0,0,0,0.18)]" />
         ))}
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-[#1c140c]/20 to-[#3a2a14]/55" />
     </div>
   );
 }

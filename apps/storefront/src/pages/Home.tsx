@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { media } from '../api';
 import { Price } from '../components/Price';
 import { useShop } from '../shop';
+import { glass } from '../ui';
 
 export function Home() {
   const { catalog, loading, error } = useShop();
@@ -23,13 +24,13 @@ export function Home() {
       .filter((section) => section.products.length > 0);
   }, [catalog, query]);
 
-  if (loading) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-muted ring-1 ring-gold/30 md:mx-6">Cargando la tienda…</p>;
-  if (error) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-danger ring-1 ring-gold/30 md:mx-6">{error}</p>;
+  if (loading) return <p className={`${glass} mx-3 my-4 rounded-[2rem] px-6 py-24 text-muted md:mx-6`}>Cargando la tienda…</p>;
+  if (error) return <p className={`${glass} mx-3 my-4 rounded-[2rem] px-6 py-24 text-danger md:mx-6`}>{error}</p>;
   if (!catalog) return null;
 
   return (
     <div className="mx-auto w-full max-w-6xl px-3 py-4 md:px-6 md:py-8">
-      <section className="relative grid items-end gap-10 overflow-hidden rounded-[2rem] bg-paper/95 px-6 py-12 shadow-sm ring-1 ring-gold/50 backdrop-blur-md md:px-10 md:py-16 lg:grid-cols-[1fr_280px] lg:gap-16">
+      <section className={`${glass} relative grid items-end gap-10 overflow-hidden rounded-[2rem] px-6 py-12 md:px-10 md:py-16 lg:grid-cols-[1fr_280px] lg:gap-16`}>
         <span className="pointer-events-none absolute left-4 top-4 h-7 w-7 border-l border-t border-gold" aria-hidden="true" />
         <span className="pointer-events-none absolute right-4 top-4 h-7 w-7 border-r border-t border-gold" aria-hidden="true" />
         <span className="pointer-events-none absolute bottom-4 left-4 h-7 w-7 border-b border-l border-gold" aria-hidden="true" />
@@ -57,10 +58,10 @@ export function Home() {
       </section>
 
       <div id="catalogo">
-        {sections.length === 0 && <p className="mt-4 rounded-[2rem] bg-paper/94 px-6 py-16 text-muted backdrop-blur-md">No hay productos para esa búsqueda.</p>}
+        {sections.length === 0 && <p className={`${glass} mt-4 rounded-[2rem] px-6 py-16 text-muted`}>No hay productos para esa búsqueda.</p>}
         {sections.map((section, index) => (
-          <section key={section.id} id={section.slug} className="mt-4 scroll-mt-36 rounded-[2rem] bg-paper/95 px-5 py-12 ring-1 ring-gold/30 backdrop-blur-md md:mt-6 md:px-10 md:py-16">
-            <div className="mb-10 flex items-end justify-between gap-8 md:mb-14">
+          <section key={section.id} id={section.slug} className="mt-6 scroll-mt-36 md:mt-8">
+            <div className={`${glass} mb-4 flex items-end justify-between gap-8 rounded-[1.75rem] px-5 py-6 md:px-8 md:py-7`}>
               <div>
                 <p className="flex items-center gap-3 text-xs font-medium tracking-[0.2em] text-gold">
                   <span className="h-px w-6 bg-gold" />
@@ -70,10 +71,10 @@ export function Home() {
               </div>
               {section.description && <p className="hidden max-w-xs text-right text-sm leading-relaxed text-muted md:block">{section.description}</p>}
             </div>
-            <div className="grid grid-cols-2 gap-x-5 gap-y-12 md:grid-cols-3 md:gap-x-8 md:gap-y-16">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
               {section.products.map((product) => (
-                <Link key={product.id} to={`/producto/${product.slug}`} className="group text-ink no-underline">
-                  <span className="block overflow-hidden rounded-3xl bg-stage ring-1 ring-gold/25">
+                <Link key={product.id} to={`/producto/${product.slug}`} className={`${glass} group rounded-[1.6rem] p-3 text-ink no-underline transition hover:bg-paper/55`}>
+                  <span className="block overflow-hidden rounded-2xl bg-stage/70 ring-1 ring-white/50">
                     {product.imageUrl ? (
                       <img
                         src={media(product.imageUrl) ?? ''}
@@ -81,12 +82,14 @@ export function Home() {
                         className="aspect-square w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                       />
                     ) : (
-                      <span className="block aspect-square bg-stage" />
+                      <span className="block aspect-square bg-stage/70" />
                     )}
                   </span>
-                  <h3 className="mt-5 font-serif text-xl tracking-tight">{product.name}</h3>
-                  <Price cents={product.priceCents} compareAtCents={product.compareAtCents} currency={currency} />
-                  <p className="mt-1 text-sm leading-relaxed text-muted">{product.summary}</p>
+                  <h3 className="mt-4 px-1 font-serif text-xl tracking-tight">{product.name}</h3>
+                  <div className="px-1">
+                    <Price cents={product.priceCents} compareAtCents={product.compareAtCents} currency={currency} />
+                  </div>
+                  <p className="mt-1 px-1 pb-1 text-sm leading-relaxed text-muted">{product.summary}</p>
                 </Link>
               ))}
             </div>
