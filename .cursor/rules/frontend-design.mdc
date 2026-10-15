@@ -1,35 +1,14 @@
 ---
-description: Acabado visual de la tienda y el admin de Caminito
-globs: apps/storefront/**/*,apps/admin/**/*
-alwaysApply: false
+description: Cuando el usuario pide un diseño en palabras, interpretarlo y aplicarlo
+alwaysApply: true
 ---
 
-# Diseño de Caminito
+# Diseño en palabras
 
-Caminito es una tienda de artesanías. Hay dos interfaces y las dos comparten identidad: la tienda pública (`apps/storefront`) y el admin de teléfono (`apps/admin`). El acabado tiene que verse hecho a propósito, no como una plantilla.
+El usuario describe el look en castellano cotidiano, con voseo. No pide un brief ni una paleta. Traducí esas palabras a cambios concretos en la tienda (`apps/storefront`) y, si nombra el admin, también en `apps/admin`. Aplicálos en el código. No le pidas colores, tipografías ni referencias, salvo que falte un dato imposible de inferir.
 
-No cambies de framework ni de sistema de estilos para resolver un problema visual. La tienda usa Tailwind 4 con los tokens de `apps/storefront/src/styles.css` y las clases compartidas de `apps/storefront/src/ui.ts`. El admin usa las clases de `apps/admin/src/styles.css`. Extendé esos tokens. No dupliques color, radio o tipografía en un componente.
+La última descripción gana. Si dice «más compacto», achicá título y aire. Si dice «poca onda» o «más diseño», reforzá la gráfica. Si dice «que respire», abrí el espacio. Si dice «no tan profesional», bajá la frialdad: más cercano, menos corporativo. No vuelvas a un estilo anterior porque una regla vieja lo fijaba.
 
-## Identidad
+La tienda usa Tailwind 4 (`apps/storefront/src/styles.css` y `apps/storefront/src/ui.ts`). El admin usa `apps/admin/src/styles.css`. Cambiá esos tokens y las pantallas. No cambies de framework para un ajuste visual.
 
-- Papel `#f5f2ec`, tinta `#1c1917`, texto secundario `#57534e`, línea `#e6e1d8`, superficie `#fffcf9`, escenario de imagen `#efeae3`.
-- El acento `#8f6230` es solo para rótulos cortos. El peligro es `#9f2c2c`. No agregues otro color de marca.
-- Títulos en Instrument Serif, interfaz en Instrument Sans. No mezcles otra pareja tipográfica.
-- El sello circular es la única marca gráfica. No lo redibujes ni lo repitas en cada bloque.
-- El copy de la interfaz usa voseo.
-
-## Composición
-
-- Jerarquía: un título serif, un rótulo breve, cuerpo en sans. No compitas con varios títulos del mismo tamaño.
-- Espaciado amplio y regular. En la tienda, el contenido vive en `max-w-6xl` con padding generoso. En el admin, la pantalla es un teléfono de hasta 440px, con aire entre grupos, no entre cada palabra.
-- Botones principales en píldora de tinta. Los secundarios son ghost, con borde de línea. Las fotos y los campos usan radio amplio. No uses sombras fuertes ni gradientes decorativos.
-- Una superficie alcanza para agrupar. No envuelvas cada dato en una tarjeta.
-- Hover, focus visible, active, disabled, carga, error y vacío tienen que existir en lo que se toca. El focus visible es un anillo de tinta, no se quita.
-- En móvil, tablet y escritorio se reacomoda la misma jerarquía. No escondas una acción principal para que entre el layout.
-
-## Límites
-
-- No cambies rutas, autenticación, API ni datos para mejorar el aspecto.
-- No reemplaces contenido real por texto de relleno.
-- No borres una acción para simplificar la pantalla.
-- Si hace falta una dependencia o un cambio de arquitectura, buscá primero la solución con lo que el repo ya tiene.
+No toques rutas, autenticación, API ni datos para cambiar el aspecto. No borres acciones. El copy de la interfaz sigue en voseo.
