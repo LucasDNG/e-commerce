@@ -1,4 +1,4 @@
-export const apiOrigin = import.meta.env.VITE_API_URL ?? '';
+export const apiOrigin = '';
 
 export type Shop = {
   storeName: string;
