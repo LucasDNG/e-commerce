@@ -1,5 +1,6 @@
-import { mkdir, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { access, mkdir, writeFile } from 'node:fs/promises';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { hashPassword } from './auth.js';
 import { pool, query } from './db.js';
@@ -118,7 +119,7 @@ const products: SeedProduct[] = [
   },
 ];
 
-await migrate();
+export async function seedCatalog(): Promise<void> {
 await mkdir(env.uploadDir, { recursive: true });
 
 const admins = await query<{ id: string }>('SELECT id FROM admins WHERE lower(email) = lower($1)', [env.adminEmail]);
@@ -178,15 +179,30 @@ for (const [index, product] of products.entries()) {
 
   const images = await query('SELECT id FROM product_images WHERE product_id = $1', [productId]);
   const svg = seedArt[product.slug];
-  if (images.length === 0 && svg) {
+  if (svg) {
     const filename = `seed-${product.slug}.svg`;
-    await writeFile(join(env.uploadDir, filename), svg);
-    await pool.query(
-      `INSERT INTO product_images (id, product_id, filename, alt, sort_order) VALUES ($1, $2, $3, $4, 0)`,
-      [randomUUID(), productId, filename, product.name],
-    );
+    try {
+      await access(join(env.uploadDir, filename));
+    } catch {
+      await writeFile(join(env.uploadDir, filename), svg);
+    }
+    if (images.length === 0) {
+      await pool.query(
+        `INSERT INTO product_images (id, product_id, filename, alt, sort_order) VALUES ($1, $2, $3, $4, 0)`,
+        [randomUUID(), productId, filename, product.name],
+      );
+    }
   }
 }
 
 console.log('Catálogo de muestra listo.');
-await pool.end();
+}
+
+const invokedDirectly =
+  process.argv[1] !== undefined && import.meta.url === pathToFileURL(resolve(process.argv[1])).href;
+
+if (invokedDirectly) {
+  await migrate();
+  await seedCatalog();
+  await pool.end();
+}

@@ -1,7 +1,12 @@
 import pg from 'pg';
 import { env } from './env.js';
 
-export const pool = new pg.Pool({ connectionString: env.databaseUrl });
+const remote = !/@(localhost|127\.0\.0\.1)[:/]/.test(env.databaseUrl);
+
+export const pool = new pg.Pool({
+  connectionString: env.databaseUrl,
+  ssl: remote ? { rejectUnauthorized: false } : undefined,
+});
 
 pool.on('error', (error) => {
   console.error('Error de Postgres', error);

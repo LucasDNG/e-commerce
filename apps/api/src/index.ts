@@ -1,10 +1,13 @@
+import { existsSync } from 'node:fs';
 import { mkdir } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import cors from 'cors';
 import express, { type NextFunction, type Request, type Response } from 'express';
 import multer from 'multer';
 import { ZodError } from 'zod';
 import { pool } from './db.js';
-import { env, stripeReady } from './env.js';
+import { env, isCorsOriginAllowed, stripeReady } from './env.js';
 import { HttpError } from './errors.js';
 import { zodMessage } from './http.js';
 import { getStripe, markOrderPaid } from './payments.js';
@@ -55,7 +58,14 @@ app.post(
 );
 
 app.use(express.json({ limit: '1mb' }));
-app.use(cors({ origin: env.corsOrigins, allowedHeaders: ['Content-Type', 'Authorization', 'stripe-signature'] }));
+app.use(
+  cors({
+    origin(origin, callback) {
+      callback(null, isCorsOriginAllowed(origin));
+    },
+    allowedHeaders: ['Content-Type', 'Authorization', 'stripe-signature'],
+  }),
+);
 app.use((req, res, next) => {
   const started = Date.now();
   res.on('finish', () => {
@@ -81,6 +91,20 @@ app.use('/api', (_req, res) => {
   res.status(404).json({ error: 'No encontrado' });
 });
 
+const storefrontDist = resolve(dirname(fileURLToPath(import.meta.url)), '../../storefront/dist');
+if (process.env.SERVE_WEB === 'true' && existsSync(storefrontDist)) {
+  app.use(express.static(storefrontDist, { index: false, maxAge: '1h' }));
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      next();
+      return;
+    }
+    res.sendFile(resolve(storefrontDist, 'index.html'), (error) => {
+      if (error) next(error);
+    });
+  });
+}
+
 app.use((error: unknown, _req: Request, res: Response, _next: NextFunction) => {
   if (error instanceof HttpError) {
     res.status(error.status).json({ error: error.message });
@@ -104,6 +128,10 @@ app.use((error: unknown, _req: Request, res: Response, _next: NextFunction) => {
 
 await migrate();
 await mkdir(env.uploadDir, { recursive: true });
+if (process.env.SEED_ON_BOOT === 'true') {
+  const { seedCatalog } = await import('./seed.js');
+  await seedCatalog();
+}
 
 app.listen(env.port, '0.0.0.0', () => {
   console.log(`API en http://localhost:${env.port}`);

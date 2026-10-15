@@ -83,7 +83,7 @@ El stock se descuenta cuando el pago queda confirmado. Si dos personas compran l
 4. Los colores de la tienda están al principio de `apps/storefront/src/styles.css`. Los del admin, en `apps/admin/src/styles.css`.
 5. Los textos están en español con voseo. Para otro país, se buscan en `apps/storefront/src` y `apps/admin/src`.
 6. Conectá Stripe y cambiá la contraseña del admin.
-7. En producción, publicá la tienda y seteá `VITE_API_URL` con la URL de la API. El admin puede vivir en otro dominio: agregalo a `CORS_ORIGIN`.
+7. En producción, la tienda y la API salen juntas. `render.yaml` define el servicio `caminito-vitrina`: compilá la tienda, levantá la API y servila en `https://caminito-vitrina.onrender.com`. Hace falta una base Postgres (la misma cuenta de Neon que pádel, con una base nueva) en `DATABASE_URL` y un `JWT_SECRET` largo. `CORS_ORIGIN` ya acepta la tienda de Vercel. Si Vercel tiene cargada `VITE_API_URL`, esa URL gana; si no, el build apunta al servicio de Render. El admin puede vivir en otro dominio: agregalo a `CORS_ORIGIN`.
 
 Las fotos subidas quedan en `apps/api/uploads`. Para más de un servidor, ese directorio se reemplaza por almacenamiento de objetos. La base ya guarda solo el nombre del archivo.
 

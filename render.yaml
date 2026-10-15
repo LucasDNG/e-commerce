@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: caminito-vitrina
+    runtime: node
+    branch: main
+    buildCommand: npm ci --ignore-scripts && npm run build -w @vitrina/storefront
+    startCommand: npm run start -w @vitrina/api
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: SERVE_WEB
+        value: "true"
+      - key: SEED_ON_BOOT
+        value: "true"
+      - key: ADMIN_EMAIL
+        value: admin@vitrina.local
+      - key: ADMIN_PASSWORD
+        value: cambiar-esta-clave
+      - key: ADMIN_NAME
+        value: Admin
+      - key: CORS_ORIGIN
+        value: https://vitrina.vercel.app,https://*.vercel.app,https://caminito-vitrina.onrender.com,http://localhost:5173,http://localhost:5174
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false

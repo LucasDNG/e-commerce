@@ -1,4 +1,5 @@
-export const apiOrigin = import.meta.env.VITE_API_URL ?? '';
+const configuredOrigin = (import.meta.env.VITE_API_URL ?? '').replace(/\/$/, '');
+export const apiOrigin = configuredOrigin || (import.meta.env.PROD ? 'https://caminito-vitrina.onrender.com' : '');
 
 export type Shop = {
   storeName: string;
@@ -79,9 +80,21 @@ export function media(path: string | null): string | null {
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
   const headers = new Headers(init?.headers);
   if (init?.body && !headers.has('Content-Type')) headers.set('Content-Type', 'application/json');
-  const response = await fetch(`${apiOrigin}${path}`, { ...init, headers });
+  let response: Response;
+  try {
+    response = await fetch(`${apiOrigin}${path}`, { ...init, headers });
+  } catch {
+    throw new Error('No se pudo conectar con la tienda');
+  }
   const text = await response.text();
-  const data = text ? (JSON.parse(text) as { error?: string }) : {};
+  let data: { error?: string } = {};
+  if (text) {
+    try {
+      data = JSON.parse(text) as { error?: string };
+    } catch {
+      throw new Error('La tienda no pudo leer la respuesta del servidor');
+    }
+  }
   if (!response.ok) throw new Error(data.error ?? 'No se pudo completar la acción');
   return data as T;
 }

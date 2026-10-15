@@ -23,9 +23,9 @@ export const env = {
     .split(',')
     .map((origin) => origin.trim())
     .filter(Boolean),
-  adminEmail: process.env.ADMIN_EMAIL ?? 'admin@vitrina.local',
-  adminPassword: process.env.ADMIN_PASSWORD ?? 'cambiar-esta-clave',
-  adminName: process.env.ADMIN_NAME ?? 'Admin',
+  adminEmail: process.env.ADMIN_EMAIL || 'admin@vitrina.local',
+  adminPassword: process.env.ADMIN_PASSWORD || 'cambiar-esta-clave',
+  adminName: process.env.ADMIN_NAME || 'Admin',
   stripeSecretKey: process.env.STRIPE_SECRET_KEY ?? '',
   stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY ?? '',
   stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET ?? '',
@@ -34,6 +34,18 @@ export const env = {
 
 export function stripeReady(): boolean {
   return Boolean(env.stripeSecretKey && env.stripePublishableKey);
+}
+
+function originMatches(origin: string, allowed: string): boolean {
+  if (allowed === '*') return true;
+  if (!allowed.includes('*')) return origin === allowed;
+  const pattern = allowed.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replaceAll('*', '[^/]*');
+  return new RegExp(`^${pattern}$`).test(origin);
+}
+
+export function isCorsOriginAllowed(origin: string | undefined): boolean {
+  if (!origin) return true;
+  return env.corsOrigins.some((allowed) => originMatches(origin, allowed));
 }
 
 export const CURRENCIES = ['ARS', 'USD', 'EUR', 'MXN', 'CLP', 'UYU', 'BRL', 'COP'] as const;
