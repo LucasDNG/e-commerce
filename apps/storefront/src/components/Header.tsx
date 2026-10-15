@@ -9,7 +9,7 @@ export function Header() {
   const name = catalog?.shop.storeName ?? 'Caminito';
 
   return (
-    <header className="sticky top-0 z-40 px-3 pt-3 md:px-6">
+    <header className="px-3 pt-3 md:px-6">
       <div className={`${glass} relative mx-auto max-w-6xl rounded-[1.6rem]`}>
         <div className="flex w-full items-center justify-between gap-3 px-4 py-3 md:gap-4 md:px-6 md:py-3.5">
           <Link to="/" className="flex min-w-0 items-center gap-3 text-ink no-underline md:gap-4">

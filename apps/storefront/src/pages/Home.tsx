@@ -56,7 +56,7 @@ export function Home() {
       <div id="catalogo">
         {sections.length === 0 && <p className={`${glass} mt-4 rounded-[2rem] px-6 py-16 text-muted`}>No hay productos para esa búsqueda.</p>}
         {sections.map((section, index) => (
-          <section key={section.id} id={section.slug} className="mt-6 scroll-mt-48 md:mt-8">
+          <section key={section.id} id={section.slug} className="mt-6 scroll-mt-6 md:mt-8">
             <div className={`${glass} mb-4 flex items-end justify-between gap-8 rounded-[1.75rem] px-5 py-6 md:px-8 md:py-7`}>
               <div>
                 <p className="flex items-center gap-3 text-xs font-medium tracking-[0.2em] text-gold">
