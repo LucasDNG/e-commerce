@@ -17,11 +17,11 @@ export function Header() {
   const name = catalog?.shop.storeName ?? 'Caminito';
 
   return (
-    <header className="sticky top-0 z-40 text-card">
-      <div className="relative overflow-hidden bg-[#140f0c]">
+    <header className="sticky top-0 z-40 px-3 pt-3 text-card md:px-6">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.6rem] bg-[#140f0c]/90 shadow-[0_18px_40px_rgba(20,15,12,0.35)] ring-1 ring-[#e2b14a]/45 backdrop-blur-md">
         <SealGlow />
-        <div className="h-[3px] bg-gradient-to-r from-[#7a5a16] via-[#e2b14a] to-[#7a5a16]" />
-        <div className="relative mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-3 md:px-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-[#e2b14a] to-transparent" />
+        <div className="relative flex w-full items-center justify-between gap-4 px-4 py-2.5 md:px-6">
           <Link to="/" className="flex items-center gap-3 text-card no-underline focus-visible:outline-[#e2b14a]">
             <img
               src="/seal.svg"
@@ -77,10 +77,10 @@ export function Header() {
 export function Footer() {
   const { catalog } = useShop();
   return (
-    <footer className="relative mt-10 overflow-hidden bg-[#140f0c] text-stone-300">
+    <footer className="mt-10 px-3 pb-3 text-stone-300 md:px-6">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.6rem] bg-[#140f0c]/92 ring-1 ring-[#e2b14a]/40">
       <div className="h-px bg-gradient-to-r from-transparent via-[#e2b14a] to-transparent" />
-      <div className="h-[3px] bg-gradient-to-r from-[#7a5a16] via-[#e2b14a] to-[#7a5a16]" />
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-16 md:flex-row md:items-center md:px-10 md:py-20">
+      <div className="flex w-full flex-col gap-6 px-6 py-14 md:flex-row md:items-center md:px-10 md:py-16">
         <img src="/seal.svg" alt="" width={64} height={64} className="h-16 w-16 rounded-full shadow-[0_0_0_2px_#c8962a]" />
         <div>
           <p className="font-serif text-4xl leading-none text-card">{catalog?.shop.storeName ?? 'Caminito'}</p>
@@ -95,6 +95,7 @@ export function Footer() {
             </a>
           )}
         </div>
+      </div>
       </div>
     </footer>
   );

@@ -31,10 +31,6 @@ export function Home() {
   return (
     <div className="mx-auto w-full max-w-6xl px-3 py-4 md:px-6 md:py-8">
       <section className={`${glass} relative grid items-end gap-10 overflow-hidden rounded-[2rem] px-6 py-12 md:px-10 md:py-16 lg:grid-cols-[1fr_280px] lg:gap-16`}>
-        <span className="pointer-events-none absolute left-4 top-4 h-7 w-7 border-l border-t border-gold" aria-hidden="true" />
-        <span className="pointer-events-none absolute right-4 top-4 h-7 w-7 border-r border-t border-gold" aria-hidden="true" />
-        <span className="pointer-events-none absolute bottom-4 left-4 h-7 w-7 border-b border-l border-gold" aria-hidden="true" />
-        <span className="pointer-events-none absolute bottom-4 right-4 h-7 w-7 border-b border-r border-gold" aria-hidden="true" />
         <div>
           <p className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.22em] text-accent">
             <span className="h-px w-8 bg-gold" />
