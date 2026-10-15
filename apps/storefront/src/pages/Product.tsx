@@ -40,7 +40,7 @@ export function ProductPage() {
 
   if (error) {
     return (
-      <div className="mx-auto max-w-xl px-6 py-24">
+      <div className="mx-3 my-4 max-w-xl rounded-[2rem] bg-paper px-6 py-16 ring-1 ring-gold/30 md:mx-auto md:my-8">
         <p className="text-danger">{error}</p>
         <Link to="/" className={`${btn} mt-8`}>
           Volver a la tienda
@@ -48,7 +48,7 @@ export function ProductPage() {
       </div>
     );
   }
-  if (!product) return <p className="px-6 py-24 text-muted">Cargando producto…</p>;
+  if (!product) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-muted ring-1 ring-gold/30 md:mx-6">Cargando producto…</p>;
 
   const images = product.images.length > 0 ? product.images : [{ id: 'empty', url: product.imageUrl, alt: product.name }];
   const current = images[Math.min(photo, images.length - 1)];

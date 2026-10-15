@@ -12,7 +12,7 @@ export function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-xl px-6 py-24 md:px-10">
+      <div className="mx-3 my-4 max-w-xl rounded-[2rem] bg-paper px-6 py-16 ring-1 ring-gold/30 md:mx-auto md:my-8 md:px-10">
         <h1 className="font-serif text-5xl tracking-tight">El carrito está vacío</h1>
         <Link to="/" className={`${btn} mt-8`}>
           Ver la tienda

@@ -11,6 +11,7 @@
   --color-stage: #efeae3;
   --color-accent: #8f6230;
   --color-danger: #9f2c2c;
+  --color-gold: #c8962a;
 }
 
 @layer base {

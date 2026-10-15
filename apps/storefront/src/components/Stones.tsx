@@ -17,7 +17,7 @@ export function StoneField() {
           </span>
         ))}
       </div>
-      <div className="absolute inset-0 bg-paper/40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-[#1c140c]/20 to-[#3a2a14]/55" />
     </div>
   );
 }

@@ -23,15 +23,22 @@ export function Home() {
       .filter((section) => section.products.length > 0);
   }, [catalog, query]);
 
-  if (loading) return <p className="px-6 py-24 text-muted md:px-10">Cargando la tienda…</p>;
-  if (error) return <p className="px-6 py-24 text-danger md:px-10">{error}</p>;
+  if (loading) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-muted ring-1 ring-gold/30 md:mx-6">Cargando la tienda…</p>;
+  if (error) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-danger ring-1 ring-gold/30 md:mx-6">{error}</p>;
   if (!catalog) return null;
 
   return (
     <div className="mx-auto w-full max-w-6xl px-3 py-4 md:px-6 md:py-8">
-      <section className="grid items-end gap-10 rounded-[2rem] bg-paper/94 px-6 py-12 shadow-sm backdrop-blur-md md:px-10 md:py-16 lg:grid-cols-[1fr_280px] lg:gap-16">
+      <section className="relative grid items-end gap-10 overflow-hidden rounded-[2rem] bg-paper/95 px-6 py-12 shadow-sm ring-1 ring-gold/50 backdrop-blur-md md:px-10 md:py-16 lg:grid-cols-[1fr_280px] lg:gap-16">
+        <span className="pointer-events-none absolute left-4 top-4 h-7 w-7 border-l border-t border-gold" aria-hidden="true" />
+        <span className="pointer-events-none absolute right-4 top-4 h-7 w-7 border-r border-t border-gold" aria-hidden="true" />
+        <span className="pointer-events-none absolute bottom-4 left-4 h-7 w-7 border-b border-l border-gold" aria-hidden="true" />
+        <span className="pointer-events-none absolute bottom-4 right-4 h-7 w-7 border-b border-r border-gold" aria-hidden="true" />
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-accent">Artesanías · Verónica</p>
+          <p className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.22em] text-accent">
+            <span className="h-px w-8 bg-gold" />
+            Artesanías · Verónica
+          </p>
           <h1 className="mt-6 max-w-[12ch] font-serif text-5xl leading-[0.95] tracking-tight text-ink md:text-7xl">
             {catalog.shop.tagline || catalog.shop.storeName}
           </h1>
@@ -52,10 +59,13 @@ export function Home() {
       <div id="catalogo">
         {sections.length === 0 && <p className="mt-4 rounded-[2rem] bg-paper/94 px-6 py-16 text-muted backdrop-blur-md">No hay productos para esa búsqueda.</p>}
         {sections.map((section, index) => (
-          <section key={section.id} id={section.slug} className="mt-4 scroll-mt-28 rounded-[2rem] bg-paper/94 px-5 py-12 backdrop-blur-md md:mt-6 md:px-10 md:py-16">
+          <section key={section.id} id={section.slug} className="mt-4 scroll-mt-36 rounded-[2rem] bg-paper/95 px-5 py-12 ring-1 ring-gold/30 backdrop-blur-md md:mt-6 md:px-10 md:py-16">
             <div className="mb-10 flex items-end justify-between gap-8 md:mb-14">
               <div>
-                <p className="text-xs font-medium tracking-[0.2em] text-muted">{String(index + 1).padStart(2, '0')}</p>
+                <p className="flex items-center gap-3 text-xs font-medium tracking-[0.2em] text-gold">
+                  <span className="h-px w-6 bg-gold" />
+                  {String(index + 1).padStart(2, '0')}
+                </p>
                 <h2 className="mt-3 font-serif text-4xl tracking-tight text-ink md:text-5xl">{section.name}</h2>
               </div>
               {section.description && <p className="hidden max-w-xs text-right text-sm leading-relaxed text-muted md:block">{section.description}</p>}
@@ -63,7 +73,7 @@ export function Home() {
             <div className="grid grid-cols-2 gap-x-5 gap-y-12 md:grid-cols-3 md:gap-x-8 md:gap-y-16">
               {section.products.map((product) => (
                 <Link key={product.id} to={`/producto/${product.slug}`} className="group text-ink no-underline">
-                  <span className="block overflow-hidden rounded-3xl bg-stage">
+                  <span className="block overflow-hidden rounded-3xl bg-stage ring-1 ring-gold/25">
                     {product.imageUrl ? (
                       <img
                         src={media(product.imageUrl) ?? ''}

@@ -91,7 +91,7 @@ export function CheckoutPage() {
 
   if (!done && items.length === 0 && !created) {
     return (
-      <div className="mx-auto max-w-xl px-6 py-24">
+      <div className="mx-3 my-4 max-w-xl rounded-[2rem] bg-paper px-6 py-16 ring-1 ring-gold/30 md:mx-auto md:my-8">
         <h1 className="font-serif text-5xl tracking-tight">No hay nada para pagar</h1>
         <Link to="/" className={`${btn} mt-8`}>
           Volver a la tienda

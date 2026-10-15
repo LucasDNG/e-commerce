@@ -11,7 +11,7 @@ import { ShopProvider } from './shop';
 
 function NotFound() {
   return (
-    <div className="mx-auto max-w-xl px-6 py-24">
+    <div className="mx-3 my-4 max-w-xl rounded-[2rem] bg-paper px-6 py-16 ring-1 ring-gold/30 md:mx-auto md:my-8">
       <h1 className="font-serif text-5xl tracking-tight">Esa página no está</h1>
       <a className="mt-6 inline-block text-sm underline underline-offset-4" href="/">
         Volver a la tienda

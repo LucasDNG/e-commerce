@@ -29,8 +29,8 @@ export function OrderPage() {
     };
   }, [token]);
 
-  if (error) return <p className="px-6 py-24 text-danger">{error}</p>;
-  if (!order) return <p className="px-6 py-24 text-muted">Buscando el pedido…</p>;
+  if (error) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-danger ring-1 ring-gold/30 md:mx-6">{error}</p>;
+  if (!order) return <p className="mx-3 my-4 rounded-[2rem] bg-paper px-6 py-24 text-muted ring-1 ring-gold/30 md:mx-6">Buscando el pedido…</p>;
 
   return (
     <div className="mx-auto my-4 max-w-xl rounded-[2rem] bg-paper/94 px-6 py-14 backdrop-blur-md md:my-8 md:py-20">
