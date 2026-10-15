@@ -26,13 +26,13 @@ export function Orders() {
         <h1>Pedidos</h1>
       </header>
       {error && <p className="error">{error}</p>}
-      {orders.length === 0 && <p className="muted">Cuando alguien pague en la tienda, el pedido aparece acá.</p>}
+      {orders.length === 0 && <p className="empty">Cuando alguien pague en la tienda, el pedido aparece acá.</p>}
       <ul className="list">
         {orders.map((order) => (
           <li key={order.id} className="card stack">
             <button type="button" className="order-head" onClick={() => setOpen((value) => (value === order.id ? null : order.id))}>
               <strong>#{order.number}</strong>
-              <span className={order.status === 'paid' ? 'good' : 'muted'}>{labels[order.status]}</span>
+              <span className={order.status === 'paid' ? 'flag on' : order.status === 'stock_failed' ? 'flag bad' : 'flag'}>{labels[order.status]}</span>
             </button>
             <p>
               {order.customerName}

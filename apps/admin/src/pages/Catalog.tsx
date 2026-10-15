@@ -147,7 +147,7 @@ export function Catalog() {
         </button>
       )}
       {loading && <p className="muted">Cargando…</p>}
-      {!loading && visible.length === 0 && <p className="muted">Todavía no hay productos en esta vista.</p>}
+      {!loading && visible.length === 0 && <p className="empty">Todavía no hay productos en esta vista.</p>}
       <ul className="list">
         {visible.map((product, index) => (
           <li key={product.id} className="card row">
@@ -158,7 +158,7 @@ export function Catalog() {
                 {formatMoney(product.priceCents, currency)} · {product.stock} en stock
                 {sectionId === 'all' ? ` · ${sectionName(product.sectionId)}` : ''}
               </p>
-              <p className={product.published ? 'good' : 'muted'}>{product.published ? 'Publicado' : 'Bajado'}</p>
+              <p className={product.published ? 'flag on' : 'flag'}>{product.published ? 'Publicado' : 'Bajado'}</p>
               {ordering ? (
                 <div className="actions">
                   <button type="button" className="btn ghost" disabled={index === 0} onClick={() => void move(index, -1)}>
